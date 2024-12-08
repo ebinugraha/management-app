@@ -4,7 +4,6 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import { BoardNavbar } from "./_components/board-navbar";
-import { Board } from '@prisma/client';
 
 interface GenerateMetaDataProps {
   params: { boardId: string };
