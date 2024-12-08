@@ -1,15 +1,17 @@
-"use server";
+"use server"
 
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import { BoardNavbar } from "./_components/board-navbar";
 
-
-
-export async function generateMetadata() {
-  const boardId  = "org_2pjmI6Bq60z5OfZBVlE9THKWDMh"
+export async function generateMetadata({
+  params,
+}: {
+  params: { boardId: string };
+}) {
   const { orgId } = await auth();
+  const { boardId } = await params;
 
   if (!orgId) {
     return {
@@ -29,15 +31,15 @@ export async function generateMetadata() {
   };
 }
 
-type BoardIdLayoutProps = {
-  children: React.ReactNode;
-}
-
 const BoardIdLayout = async ({
   children,
-}: BoardIdLayoutProps) => {
-  const boardId = "org_2pjmI6Bq60z5OfZBVlE9THKWDMh"
+  params,
+}: {
+  children: React.ReactNode;
+  params: { boardId: string };
+}) => {
   const { orgId } = await auth();
+  const { boardId } = await params;
 
   if (!orgId) {
     redirect("/select-org");
@@ -63,7 +65,10 @@ const BoardIdLayout = async ({
     >
       <BoardNavbar data={board} />
       <div className="absolute inset-0 bg-black/10" />
-      <main className="relative pt-28 h-full">{children}</main>
+      <main className="relative pt-28 h-full">
+        {boardId}
+        {children}
+      </main>
     </div>
   );
 };
