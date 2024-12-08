@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { ListContainer } from "./_components/list-container";
 
-const BoardIdPage = async ({ params }: { params: { boardId: string } }) => {
+const BoardIdPage = async ({ params }: { params: Promise<{ boardId: string }> }) => {
   const { orgId } = await auth();
   const { boardId } = await params;
 
