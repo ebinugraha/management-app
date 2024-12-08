@@ -58,6 +58,8 @@ export const ListHeader = ({ dataList, onAddCard }: { dataList: List, onAddCard:
       boardId,
     });
 
+    setTitle(dataList.title);
+
     disableEditing();
   };
 

@@ -20,6 +20,20 @@ export const ListItem = ({ data }: { index: number; data: ListWithCard }) => {
     });
   };
 
+  if(isEditing && 5){
+    return (
+      <div className="mt-2">
+        <textarea
+          ref={textAreaRef}
+          onChange={disableEditing}
+          className="w-full rounded-md bg-transparent px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          placeholder="Enter list title..."
+          defaultValue={data.title}
+        />
+      </div>
+    );
+  }
+
   return (
     <li className="shrink-0 h-full w-[272px] select-none">
       <div className="w-full rounded-md bg-[#f1f2f4] shadow-sm pb-2">
