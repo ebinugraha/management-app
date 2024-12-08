@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
@@ -39,7 +39,7 @@ const BoardIdLayout = async ({
   params: { boardId: string };
 }) => {
   const { orgId } = await auth();
-  const { boardId } = await params;
+  const { boardId } = params;
 
   if (!orgId) {
     redirect("/select-org");
@@ -65,9 +65,7 @@ const BoardIdLayout = async ({
     >
       <BoardNavbar data={board} />
       <div className="absolute inset-0 bg-black/10" />
-      <main className="relative pt-28 h-full">
-        {children}
-      </main>
+      <main className="relative pt-28 h-full">{children}</main>
     </div>
   );
 };
