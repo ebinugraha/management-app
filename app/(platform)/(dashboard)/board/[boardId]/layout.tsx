@@ -5,24 +5,25 @@ import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import { BoardNavbar } from "./_components/board-navbar";
 
+// Function untuk generate metadata
 export async function generateMetadata({
   params,
 }: {
   params: { boardId: string };
 }) {
   const { orgId } = await auth();
-  const { boardId } = await params;
+  const { boardId } = params;
 
   if (!orgId) {
     return {
-      title: "Board",
+      title: "Board", // Return default title if orgId is missing
     };
   }
 
   const board = await db.board.findUnique({
     where: {
       id: boardId,
-      orgId,
+      orgId, // Ensure the orgId matches the board's orgId
     },
   });
 
@@ -36,10 +37,10 @@ const BoardIdLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: { boardId: string };
+  params: { boardId: string }; // Ensure the `params` here is not a Promise
 }) => {
   const { orgId } = await auth();
-  const { boardId } = params;
+  const { boardId } = params; // Destructure params properly
 
   if (!orgId) {
     redirect("/select-org");
@@ -53,19 +54,13 @@ const BoardIdLayout = async ({
   });
 
   if (!board) {
-    notFound();
+    notFound(); // Handle case where board is not found
   }
 
   return (
-    <div
-      className="relative h-full bg-no-repeat bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${board.imageFullUrl})`,
-      }}
-    >
+    <div>
       <BoardNavbar data={board} />
-      <div className="absolute inset-0 bg-black/10" />
-      <main className="relative pt-28 h-full">{children}</main>
+      {children}
     </div>
   );
 };
