@@ -11,7 +11,7 @@ export async function generateMetadata({
   params: { boardId: string };
 }) {
   const { orgId } = await auth();
-  const { boardId } = await params;
+  const { boardId } = params;
 
   if (!orgId) {
     return {
