@@ -5,13 +5,11 @@ import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import { BoardNavbar } from "./_components/board-navbar";
 
-interface GenerateMetaDataProps {
-  params: { boardId: string };
-}
 
-export async function generateMetadata({ params }: GenerateMetaDataProps) {
+
+export async function generateMetadata() {
+  const boardId  = "org_2pjmI6Bq60z5OfZBVlE9THKWDMh"
   const { orgId } = await auth();
-  const { boardId } = params;
 
   if (!orgId) {
     return {
@@ -31,17 +29,15 @@ export async function generateMetadata({ params }: GenerateMetaDataProps) {
   };
 }
 
-interface BoardIdLayoutProps {
+type BoardIdLayoutProps = {
   children: React.ReactNode;
-  params: { boardId: string };
 }
 
 const BoardIdLayout = async ({
   children,
-  params,
 }: BoardIdLayoutProps) => {
+  const boardId = "org_2pjmI6Bq60z5OfZBVlE9THKWDMh"
   const { orgId } = await auth();
-  const { boardId } = params;
 
   if (!orgId) {
     redirect("/select-org");
