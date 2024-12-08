@@ -18,7 +18,7 @@ export const Info = () => {
       <div className="w-[60px] h-[60px] relative">
         <Image
           fill
-          src={organization?.imageUrl!}
+          src={organization?.imageUrl as string}
           alt="Organization"
           className="rounded-md object-cover"
         />
