@@ -4,26 +4,26 @@ import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import { BoardNavbar } from "./_components/board-navbar";
+import { Board } from '@prisma/client';
 
-// Function untuk generate metadata
-export async function generateMetadata({
-  params,
-}: {
+interface GenerateMetaDataProps {
   params: { boardId: string };
-}) {
+}
+
+export async function generateMetadata({ params }: GenerateMetaDataProps) {
   const { orgId } = await auth();
   const { boardId } = params;
 
   if (!orgId) {
     return {
-      title: "Board", // Return default title if orgId is missing
+      title: "Board",
     };
   }
 
   const board = await db.board.findUnique({
     where: {
       id: boardId,
-      orgId, // Ensure the orgId matches the board's orgId
+      orgId,
     },
   });
 
@@ -32,15 +32,17 @@ export async function generateMetadata({
   };
 }
 
+interface BoardIdLayoutProps {
+  children: React.ReactNode;
+  params: { boardId: string };
+}
+
 const BoardIdLayout = async ({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: { boardId: string }; // Ensure the `params` here is not a Promise
-}) => {
+}: BoardIdLayoutProps) => {
   const { orgId } = await auth();
-  const { boardId } = params; // Destructure params properly
+  const { boardId } = params;
 
   if (!orgId) {
     redirect("/select-org");
@@ -54,13 +56,19 @@ const BoardIdLayout = async ({
   });
 
   if (!board) {
-    notFound(); // Handle case where board is not found
+    notFound();
   }
 
   return (
-    <div>
+    <div
+      className="relative h-full bg-no-repeat bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${board.imageFullUrl})`,
+      }}
+    >
       <BoardNavbar data={board} />
-      {children}
+      <div className="absolute inset-0 bg-black/10" />
+      <main className="relative pt-28 h-full">{children}</main>
     </div>
   );
 };
