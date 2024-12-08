@@ -41,7 +41,7 @@ export const FormPopover = ({
       closeRef.current?.click();
       route.push(`/board/${data.id}`);
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("board error");
     },
   });
