@@ -42,19 +42,9 @@ export const NavItem = ({
       icon: <Layout className="h-4 w-4 mr-2" />,
     },
     {
-      label: "Activity",
-      href: `/organization/${organization.id}/activity`,
-      icon: <Activity className="h-4 w-4 mr-2" />,
-    },
-    {
       label: "Settings",
       href: `/organization/${organization.id}/settings`,
       icon: <Settings className="h-4 w-4 mr-2" />,
-    },
-    {
-      label: "Billing",
-      href: `/organization/${organization.id}/billing`,
-      icon: <CreditCard className="h-4 w-4 mr-2" />,
     },
   ];
 

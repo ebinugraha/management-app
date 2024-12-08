@@ -59,6 +59,10 @@ export const ListForm = () => {
     execute({ title, boardId });
   };
 
+  const onBlur = () => {
+    formRef.current?.requestSubmit();
+  };
+
   if (isEditing) {
     return (
       <ListWrapper>
@@ -71,6 +75,7 @@ export const ListForm = () => {
             id="title"
             ref={inputRef}
             errors={fieldErrors}
+            onBlur={onBlur}
             className="text-sm px-2 py-1 h-6 font-medium border-transparent hover:border-input focus:border-input transition"
             placeholder="Enter list title..."
           />

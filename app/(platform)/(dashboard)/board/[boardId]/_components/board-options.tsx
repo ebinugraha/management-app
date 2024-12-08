@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { MoreHorizontal, X } from "lucide-react";
+import { MoreHorizontal, Trash, X } from "lucide-react";
 import { toast } from "sonner";
 
 interface BoardOptionsProps {
@@ -53,6 +53,7 @@ export const BoardOption = ({ id }: BoardOptionsProps) => {
           className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
           disabled={isLoading}
         >
+          <Trash className="h-4 w-4 mr-2" />
           Delete This board
         </Button>
       </PopoverContent>
