@@ -1,7 +1,7 @@
 import { ListWithCard } from "@/types"
 import { ListHeader } from "./list-header"
 
-export const ListItem = ({index,
+export const ListItem = ({
     data} : {index: number, data: ListWithCard}) => {
     return (
         <li className="shrink-0 h-full w-[272px] select-none">

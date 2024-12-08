@@ -1,13 +1,11 @@
 "use client";
 
 import { ListWithCard } from "@/types";
-import { List } from "@prisma/client";
 import { ListForm } from "./list-form";
 import { useEffect, useState } from "react";
 import { ListItem } from "./list-item";
 
 export const ListContainer = ({
-  boardId,
   data,
 }: {
   boardId: string;
