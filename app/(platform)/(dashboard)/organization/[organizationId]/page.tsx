@@ -1,13 +1,20 @@
-import { OrganizationSwitcher } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
+import { Separator } from "@/components/ui/separator";
+import { Info } from "./_components/info";
+import { BoardList } from "./_components/board-list";
+import { Suspense } from "react";
+
 
 const OrganizationPage = async () => {
 
-    const {userId, orgId} = await auth();
-
     return (  
-        <div>
-            this is organization page
+        <div className="w-full mb-20">
+            <Info/>
+            <Separator className="my-4"/>
+            <div className="px-2 mb:px-4">
+                <Suspense fallback={<BoardList.Skeleton/>}>
+                    <BoardList/>
+                </Suspense>
+            </div>
         </div>
     );
 }
