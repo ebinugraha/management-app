@@ -8,7 +8,6 @@ import { Plus, X } from "lucide-react";
 import { useAction } from "@/hooks/user-action";
 import { createCard } from "@/actions/create-card";
 import { forwardRef, useRef, ElementRef, KeyboardEventHandler } from "react";
-import { useParams } from "next/navigation";
 import { useEventListener, useOnClickOutside } from "usehooks-ts";
 import { toast } from "sonner";
 
