@@ -1,7 +1,5 @@
 import {
-  ArrowBigRight,
   ArrowRight,
-  ArrowRightToLine,
   CalendarDays,
   Pencil,
   Ruler,
