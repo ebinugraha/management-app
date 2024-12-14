@@ -13,8 +13,7 @@ export const Info = () => {
   }
 
   return (
-    <div className="flex items-center gap-x-4">
-      <div></div>
+    <div className="flex items-center gap-x-4 bg-slate-900 rounded-md p-4 text-white">
       <div className="w-[60px] h-[60px] relative">
         <Image
           fill

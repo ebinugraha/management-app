@@ -77,7 +77,7 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
       <Accordion
         type="multiple"
         defaultValue={defaultAccordionValue}
-        className="space-y-2"
+        className="space-y-2 border-gray-300 border-[1px] p-2 rounded-md"
       >
         {userMemberships.data.map(({ organization }) => (
           <NavItem
